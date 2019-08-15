@@ -5,7 +5,7 @@ import numpy as np
 
 from PyQt5 import QtWidgets
 
-from gen.camera_widget import Ui_CameraWidget as Ui_CameraWidget_Base
+from ui.gen.camera_widget import Ui_CameraWidget as Ui_CameraWidget_Base
 
 
 class Ui_CameraWidget(QtWidgets.QMainWindow, Ui_CameraWidget_Base):

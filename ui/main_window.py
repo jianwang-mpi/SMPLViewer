@@ -4,15 +4,15 @@
 import sys
 import numpy as np
 import cv2
-import ConfigParser
+import configparser
 
 from PyQt5 import QtGui, QtWidgets
 from opendr.camera import ProjectPoints, Rodrigues
 from opendr.renderer import ColoredRenderer
 from opendr.lighting import LambertianPointLight
 
-from gen.main_window import Ui_MainWindow as Ui_MainWindow_Base
-from camera_widget import Ui_CameraWidget
+from ui.gen.main_window import Ui_MainWindow as Ui_MainWindow_Base
+from ui.camera_widget import Ui_CameraWidget
 from smpl.smpl_webuser.serialization import load_model
 
 
@@ -171,7 +171,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow_Base):
         filename, _ = QtWidgets.QFileDialog.getSaveFileName(self, 'Save config', None, 'Config File (*.ini)')
         if filename:
             with open(str(filename), 'w') as fp:
-                config = ConfigParser.ConfigParser()
+                config = configparser.ConfigParser()
                 config.add_section('Model')
                 config.set('Model', 'gender', self._loaded_gender)
                 config.set('Model', 'shape', ','.join(str(s) for s in self.model.betas.r))
@@ -220,7 +220,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow_Base):
             cam_dist = np.fromstring(config.get('Camera', 'distortion'), dtype=np.float64, sep=',')
             cam_c = np.fromstring(config.get('Camera', 'center'), dtype=np.float64, sep=',')
             cam_f = config.getfloat('Camera', 'focal_length')
-            print cam_c
+            print(cam_c)
             self.camera_widget.set_values(cam_pos, cam_rot, cam_f, cam_c, cam_dist)
 
             self._update_canvas = True

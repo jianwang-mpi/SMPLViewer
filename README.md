@@ -14,7 +14,8 @@ Download and set up the SMPL model from here: http://smpl.is.tue.mpg.de/.
 ```
 git clone git@github.com:thmoa/smpl_viewer.git
 cd smpl_viewer
-ln -s <path to your smpl installation> smpl
+sudo apt install libosmesa6-dev
+sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev
 pip install -r requirements.txt
 ```
 
